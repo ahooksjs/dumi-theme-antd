@@ -1,40 +1,47 @@
-import type { TabsProps } from 'antd';
-import { Tabs } from 'antd';
-import SourceCode from 'dumi/theme-default/builtins/SourceCode';
 import React from 'react';
-import NpmLogo from './npm';
-import PnpmLogo from './pnpm';
-import YarnLogo from './yarn';
+import { Tabs } from 'antd';
+import type { TabsProps } from 'antd';
+import SourceCode from 'dumi/theme-default/builtins/SourceCode';
+import { NpmIcon, YarnIcon, PnpmIcon, BunIcon } from './icons';
 
 interface InstallProps {
   npm?: string;
   yarn?: string;
   pnpm?: string;
+  bun?: string;
+  [key: string]: string | undefined;
 }
 
 const npmLabel = (
   <span className="snippet-label">
-    <NpmLogo />
+    <NpmIcon />
     npm
-  </span>
-);
-
-const pnpmLabel = (
-  <span className="snippet-label">
-    <PnpmLogo />
-    pnpm
   </span>
 );
 
 const yarnLabel = (
   <span className="snippet-label">
-    <YarnLogo />
+    <YarnIcon />
     yarn
   </span>
 );
 
-const InstallDependencies: React.FC<InstallProps> = (props) => {
-  const { npm, yarn, pnpm } = props;
+const pnpmLabel = (
+  <span className="snippet-label">
+    <PnpmIcon />
+    pnpm
+  </span>
+);
+
+const bunLabel = (
+  <span className="snippet-label">
+    <BunIcon />
+    bun
+  </span>
+);
+
+const InstallDependencies = (props: InstallProps) => {
+  const { npm, yarn, pnpm, bun } = props;
   const items = React.useMemo<TabsProps['items']>(
     () =>
       [
@@ -52,6 +59,11 @@ const InstallDependencies: React.FC<InstallProps> = (props) => {
           key: 'pnpm',
           children: pnpm ? <SourceCode lang="bash">{pnpm}</SourceCode> : null,
           label: pnpmLabel
+        },
+        {
+          key: 'bun',
+          children: bun ? <SourceCode lang="bash">{bun}</SourceCode> : null,
+          label: bunLabel
         }
       ].filter((item) => item.children),
     [npm, yarn, pnpm]
