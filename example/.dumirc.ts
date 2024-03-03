@@ -9,6 +9,10 @@ export default defineConfig({
   base: process.env.DEPLOY_SITE === 'local' ? '/' : '/dumi-theme-antd',
   favicons: ['https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png'],
   extraBabelPresets: ['@emotion/babel-preset-css-prop'],
+  locales: [
+    { id: 'zh-CN', name: '中文' },
+    { id: 'en-US', name: 'English' }
+  ],
   // pass theme config
   themeConfig: defineThemeConfig({
     name: 'dumi-theme-antd',
@@ -28,10 +32,6 @@ export default defineConfig({
     footer:
       'Made with<span style="color: rgb(255, 255, 255);">❤</span>by <span>KuangPF | Copyright © 2022-present</span>',
     github: 'https://github.com/KuangPF/dumi-theme-antd',
-    locales: [
-      { id: 'zh-CN', name: '中文' },
-      { id: 'en-US', name: 'English' }
-    ],
     localesEnhance: [
       { id: 'zh-CN', switchPrefix: '中' },
       { id: 'en-US', switchPrefix: 'En' }
