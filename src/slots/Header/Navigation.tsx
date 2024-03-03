@@ -11,6 +11,8 @@ import { getTargetLocalePath, isExternalLinks } from '../../utils';
 import { type IResponsive } from './index';
 import { getMoreLinksGroup } from './More';
 
+type MenuItemsType = Required<MenuProps>['items'];
+
 export interface NavigationProps {
   isMobile: boolean;
   responsive: IResponsive;
@@ -91,25 +93,26 @@ export default function Navigation({ isMobile, responsive }: NavigationProps) {
 
   // 统一使用 themeConfig.nav，使用 useNavData，当存在自定义 pages 时，会导致 nav 混乱
   const navList = useNavData();
-  const locale = useLocale();
+  const locale = useLocale() as ReturnType<typeof useLocale> & { base: string };
   const moreLinks = useLocaleValue('moreLinks');
-  const activeMenuItem = pathname.split('/').slice(0, 2).join('/');
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const menuItems: MenuProps['items'] = (navList ?? []).map((navItem) => {
-    const linkKeyValue = (navItem.link ?? '').split('/').slice(0, 2).join('/');
-    return {
-      label: isExternalLinks(navItem.link) ? (
-        <a href={`${navItem.link}${search}`} target="_blank" rel="noreferrer">
-          {navItem.title}
-        </a>
-      ) : (
-        <Link to={`${navItem.link}${search}`}>{navItem.title}</Link>
-      ),
-      key: isExternalLinks(navItem.link) ? navItem.link : linkKeyValue
-    };
-  });
+  const menuItems: MenuItemsType = (navList ?? [])
+    .map((navItem) => {
+      const { title, link } = navItem || {};
+      const path = `${navItem.link}${search}`;
+
+      return {
+        key: path,
+        label: isExternalLinks(link) ? (
+          <a href={path} target="_blank" rel="noreferrer">
+            {title}
+          </a>
+        ) : (
+          <Link to={path}>{title}</Link>
+        )
+      } as MenuItemsType[number];
+    })
+    .filter(Boolean);
 
   // 获取小屏幕下多语言导航栏节点
   const getLangNode = useCallback(() => {
@@ -153,8 +156,8 @@ export default function Navigation({ isMobile, responsive }: NavigationProps) {
     };
   }, [locale, locales]);
 
-  let additional: MenuProps['items'];
-  const additionalItems: MenuProps['items'] = [
+  let additional: MenuItemsType;
+  const additionalItems: MenuItemsType = [
     github || socialLinks?.github
       ? {
           label: (
@@ -180,15 +183,17 @@ export default function Navigation({ isMobile, responsive }: NavigationProps) {
       }
     ];
   }
-  const items: MenuProps['items'] = [...(menuItems ?? []), ...(additional ?? [])];
+
+  const items: MenuItemsType = [...(menuItems ?? []), ...(additional ?? [])];
   const menuMode = isMobile ? 'inline' : 'horizontal';
   const style = useStyle();
+
   return (
     <Menu
       items={items}
       mode={menuMode}
       css={style.nav}
-      selectedKeys={[activeMenuItem]}
+      selectedKeys={[pathname]}
       disabledOverflow
     />
   );

@@ -8,10 +8,6 @@ export default defineConfig({
   publicPath: process.env.DEPLOY_SITE === 'local' ? '/' : '/dumi-theme-antd/',
   base: process.env.DEPLOY_SITE === 'local' ? '/' : '/dumi-theme-antd',
   favicons: ['https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png'],
-  locales: [
-    { id: 'zh-CN', name: '中文', suffix: '' },
-    { id: 'en-US', name: 'English', suffix: '-en' }
-  ],
   extraBabelPresets: ['@emotion/babel-preset-css-prop'],
   // pass theme config
   themeConfig: defineThemeConfig({
@@ -24,17 +20,21 @@ export default defineConfig({
         { title: '示例', link: '/demo/secondary-sidebar-colors' }
       ],
       'en-US': [
-        { title: 'Guide', link: '/guide/introduce-en' },
-        { title: 'Config', link: '/config/base-en' },
-        { title: 'Demo', link: '/demo/secondary-sidebar-colors-en' }
+        { title: 'Guide', link: '/en-US/guide/introduce' },
+        { title: 'Config', link: '/en-US/config/base' },
+        { title: 'Demo', link: '/en-US/demo/secondary-sidebar-colors' }
       ]
     },
     footer:
       'Made with<span style="color: rgb(255, 255, 255);">❤</span>by <span>KuangPF | Copyright © 2022-present</span>',
     github: 'https://github.com/KuangPF/dumi-theme-antd',
+    locales: [
+      { id: 'zh-CN', name: '中文' },
+      { id: 'en-US', name: 'English' }
+    ],
     localesEnhance: [
       { id: 'zh-CN', switchPrefix: '中' },
-      { id: 'en-US', switchPrefix: 'en' }
+      { id: 'en-US', switchPrefix: 'En' }
     ],
     sidebarGroupModePath: ['/config', '/guide'],
     title: 'Dumi Theme Ant Design',
@@ -58,11 +58,11 @@ export default defineConfig({
         {
           type: 'primary',
           text: 'Start',
-          link: '/guide/introduce-en'
+          link: '/en-US/guide/introduce'
         },
         {
           text: 'Config',
-          link: '/config/base-en'
+          link: '/en-US/config/base'
         }
       ]
     },

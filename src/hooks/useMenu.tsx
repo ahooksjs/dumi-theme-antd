@@ -1,7 +1,7 @@
 import type { MenuProps } from 'antd';
 import { Tag } from 'antd';
 import { ItemType } from 'antd/lib/menu/hooks/useItems';
-import { Link, useFullSidebarData, useLocation, useSidebarData } from 'dumi';
+import { Link, useFullSidebarData, useLocation, useSidebarData, useLocale } from 'dumi';
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 import type {
@@ -12,7 +12,7 @@ import type {
   SidebarEnhanceSubType,
   SidebarEnhanceType
 } from '../types';
-import { removeTitleCode, handleFullSidebarData } from '../utils';
+import { removeTitleCode } from '../utils';
 import useAdditionalThemeConfig from './useAdditionalThemeConfig';
 import pkgJSON from '../../package.json';
 
@@ -22,16 +22,17 @@ export type UseMenuOptions = {
 };
 
 const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => {
+  const locale = useLocale() as ReturnType<typeof useLocale> & { base: string };
+  const pathLocalePrefix = locale.base === '/' ? '' : locale.base;
+
   const { pathname, search } = useLocation();
   const { sidebarGroupModePath, sidebarEnhance = {} } = useAdditionalThemeConfig();
+
   const { before, after } = options;
 
   const fullSidebarData = useFullSidebarData();
-  const navSecondSidebarData = handleFullSidebarData(fullSidebarData);
+  const sidebarData = useSidebarData();
 
-  // 提取一级导航下侧边栏数据
-  const currentNavKey = `/${pathname.split('/')?.[1]}`;
-  const sidebarData = navSecondSidebarData[currentNavKey];
   const linkTitleMap = useMemo(() => {
     return Object.values(fullSidebarData).reduce<Record<string, string>>((res, sidebar) => {
       const sidebarItems = sidebar.map((item) => item.children).flat();
@@ -43,7 +44,9 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
   }, [fullSidebarData]);
 
   const currentSidebarEnhanceData = useMemo<SidebarEnhanceItems | undefined>(() => {
-    const currentLink = Object.keys(sidebarEnhance).find((link) => pathname.startsWith(link));
+    const currentLink = Object.keys(sidebarEnhance).find((link) => {
+      return pathname.startsWith(`${pathLocalePrefix}${link}`);
+    });
     if (!currentLink) return undefined;
     return sidebarEnhance[currentLink];
   }, [pathname, sidebarEnhance]);
@@ -129,7 +132,7 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
               sidebarGroupModePath === true
                 ? true
                 : (sidebarGroupModePath ?? []).filter((rule: ISidebarGroupModePathItem) => {
-                    return pathname.startsWith(rule);
+                    return pathname.startsWith(`${pathLocalePrefix}${rule}`);
                   }).length > 0;
 
             if (isSideBarGroupMode) {
