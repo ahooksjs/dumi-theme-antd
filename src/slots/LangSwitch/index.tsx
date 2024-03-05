@@ -31,6 +31,10 @@ const LangSwitch: FC = () => {
       } else if (path.endsWith('/index')) {
         path = path.replace('/index', '/');
       }
+      if (path.endsWith('/') && path !== '/') {
+        path = path.slice(0, -1);
+      }
+
       history.push({
         pathname: path,
         search: searchParams.toString()
