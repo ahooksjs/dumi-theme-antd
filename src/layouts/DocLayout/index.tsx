@@ -52,6 +52,7 @@ const DocLayout: FC = () => {
     return routeMeta.frontmatter?.sidebar === false ? (
       <div>
         <Outlet />
+        <Footer />
       </div>
     ) : (
       <SidebarLayout>

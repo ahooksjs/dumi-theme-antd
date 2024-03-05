@@ -3,7 +3,7 @@ import { MenuOutlined } from '@ant-design/icons';
 import { ClassNames, css } from '@emotion/react';
 import { Col, Popover, Row, Select } from 'antd';
 import classNames from 'classnames';
-import { useLocation } from 'dumi';
+import { useLocale, useLocation } from 'dumi';
 import DumiSearchBar from 'dumi/theme-default/slots/SearchBar';
 import React, { useCallback, useContext, useEffect, useState, type FC } from 'react';
 import LangSwitch from 'dumi/theme/slots/LangSwitch';
@@ -153,6 +153,7 @@ const Header: FC = () => {
     windowWidth: 1400,
     menuVisible: false
   });
+  const locale = useLocale();
   const location = useLocation();
   const { docVersions } = useAdditionalThemeConfig();
 
@@ -191,8 +192,13 @@ const Header: FC = () => {
     };
   }, [onWindowResize]);
 
+  const localeBase = 'base' in locale ? locale.base : '';
+  const localeSuffix = 'suffix' in locale ? locale.suffix : '';
   const { pathname } = location;
-  const isHome = ['', 'index', 'index-cn'].includes(pathname);
+
+  const path = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+  const isHome = ['', 'index', `index${localeSuffix}`, localeBase].includes(path);
+
   const { windowWidth, menuVisible } = headerState;
   const style = useStyle();
   const headerClassName = classNames({

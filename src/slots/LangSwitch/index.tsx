@@ -25,7 +25,7 @@ const LangSwitch: FC = () => {
         target: locales.find(({ id }) => id === lang)!
       });
 
-      // 多多语言首页做特殊处理 eg. /index-en
+      // 多语言首页做特殊处理 eg. /index-en
       if (path.startsWith('/-')) {
         path = `/index${path.substring(1)}`;
       } else if (path.endsWith('/index')) {
