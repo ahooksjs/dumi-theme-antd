@@ -21,12 +21,14 @@ export default defineConfig({
       'zh-CN': [
         { title: '指南', link: '/guide/introduce' },
         { title: '配置', link: '/config/base' },
-        { title: '示例', link: '/demo/secondary-sidebar-colors' }
+        { title: '示例', link: '/demo/secondary-sidebar-colors' },
+        { title: '更新日志', link: 'https://github.com/liuyib/dumi-theme-antd/releases' }
       ],
       'en-US': [
         { title: 'Guide', link: '/en-US/guide/introduce' },
         { title: 'Config', link: '/en-US/config/base' },
-        { title: 'Demo', link: '/en-US/demo/secondary-sidebar-colors' }
+        { title: 'Demo', link: '/en-US/demo/secondary-sidebar-colors' },
+        { title: 'Releases', link: 'https://github.com/liuyib/dumi-theme-antd/releases' }
       ]
     },
     footer:

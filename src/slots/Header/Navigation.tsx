@@ -112,19 +112,17 @@ export default function Navigation({ isMobile, responsive }: NavigationProps) {
   const menuItems: MenuItemType[] = (navList ?? [])
     .map((navItem) => {
       const { title, link } = navItem || {};
-      const isExternal = isExternalLinks(link);
       const key = getFirstPathAndIgnoreLocale(link, locale.base);
+      const path = `${link}${search}`;
 
       return {
         key,
-        label: (
-          <Link
-            to={`${link}${search}`}
-            target={isExternal ? '_blank' : ''}
-            rel={isExternal ? 'noreferrer' : ''}
-          >
+        label: isExternalLinks(link) ? (
+          <a href={path} target="_blank" rel="noopener noreferrer">
             {title}
-          </Link>
+          </a>
+        ) : (
+          <Link to={path}>{title}</Link>
         )
       } as MenuItemType;
     })
