@@ -2,6 +2,7 @@ import { MenuFoldOutlined } from '@ant-design/icons';
 import { css } from '@emotion/react';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
+import { MenuItemType } from 'antd/es/menu/hooks/useItems';
 import { Link, useLocale, useLocation, useNavData, useSiteData } from 'dumi';
 import { useCallback } from 'react';
 import useAdditionalThemeConfig from '../../hooks/useAdditionalThemeConfig';
@@ -17,6 +18,17 @@ export interface NavigationProps {
   isMobile: boolean;
   responsive: IResponsive;
 }
+
+const getFirstPathAndIgnoreLocale = (pathname?: string, localeBase?: string) => {
+  if (!pathname) return '';
+  if (!localeBase) return pathname;
+
+  const splitPaths = pathname.split('/').filter(Boolean);
+  const pathLocalePrefix = localeBase === '/' ? '' : localeBase;
+  const firstPath = splitPaths.slice(0, pathLocalePrefix ? 2 : 1).join('/');
+
+  return firstPath;
+};
 
 const useStyle = () => {
   const { token } = useSiteToken();
@@ -95,22 +107,26 @@ export default function Navigation({ isMobile, responsive }: NavigationProps) {
   const navList = useNavData();
   const locale = useLocale() as ReturnType<typeof useLocale> & { base: string };
   const moreLinks = useLocaleValue('moreLinks');
+  const activeKey = getFirstPathAndIgnoreLocale(pathname, locale.base);
 
-  const menuItems: MenuItemsType = (navList ?? [])
+  const menuItems: MenuItemType[] = (navList ?? [])
     .map((navItem) => {
       const { title, link } = navItem || {};
-      const path = `${navItem.link}${search}`;
+      const isExternal = isExternalLinks(link);
+      const key = getFirstPathAndIgnoreLocale(link, locale.base);
 
       return {
-        key: path,
-        label: isExternalLinks(link) ? (
-          <a href={path} target="_blank" rel="noreferrer">
+        key,
+        label: (
+          <Link
+            to={`${link}${search}`}
+            target={isExternal ? '_blank' : ''}
+            rel={isExternal ? 'noreferrer' : ''}
+          >
             {title}
-          </a>
-        ) : (
-          <Link to={path}>{title}</Link>
+          </Link>
         )
-      } as MenuItemsType[number];
+      } as MenuItemType;
     })
     .filter(Boolean);
 
@@ -193,7 +209,7 @@ export default function Navigation({ isMobile, responsive }: NavigationProps) {
       items={items}
       mode={menuMode}
       css={style.nav}
-      selectedKeys={[pathname]}
+      selectedKeys={[activeKey]}
       disabledOverflow
     />
   );
