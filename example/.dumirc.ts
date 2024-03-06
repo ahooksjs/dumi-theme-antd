@@ -32,7 +32,7 @@ export default defineConfig({
       ]
     },
     footer:
-      'Made with<span style="color: rgb(255, 255, 255);">❤</span>by <span>KuangPF | Copyright © 2022-present</span>',
+      'Made with<span style="color: rgb(255, 255, 255);">❤</span>by <span>ahooks | Copyright © 2024-present</span>',
     github: 'https://github.com/ahooksjs/dumi-theme-antd',
     localesEnhance: [
       { id: 'zh-CN', switchPrefix: '中' },
