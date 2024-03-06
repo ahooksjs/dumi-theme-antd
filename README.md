@@ -4,13 +4,13 @@
 
 [dumi](https://d.umijs.org) theme similar to antd v5 website
 
-[![NPM version](https://img.shields.io/npm/v/dumi-theme-antd.svg?style=flat)](https://npmjs.org/package/dumi-theme-antd) [![NPM downloads](http://img.shields.io/npm/dm/dumi-theme-antd.svg?style=flat)](https://npmjs.org/package/dumi-theme-antd) [![Github Actions](https://github.com/KuangPF/dumi-theme-antd/workflows/Deploy/badge.svg)](https://github.com/KuangPF/dumi-theme-antd/actions)
+[![NPM Version](https://img.shields.io/npm/v/%40ahooksjs%2Fdumi-theme-antd)](https://npmjs.org/package/@ahooksjs/dumi-theme-antd) [![NPM Downloads](https://img.shields.io/npm/dm/%40ahooksjs%2Fdumi-theme-antd)](https://npmjs.org/package/@ahooksjs/dumi-theme-antd) [![Deploy](https://github.com/ahooksjs/dumi-theme-antd/actions/workflows/gh-pages.yml/badge.svg?branch=main)](https://github.com/ahooksjs/dumi-theme-antd/actions/workflows/gh-pages.yml)
 
 </div>
 
 <p align="center">
-  <a href="https://kuangpf.com/dumi-theme-antd">
-    <img  src="https://github-production-user-asset-6210df.s3.amazonaws.com/20694238/257865795-572736d1-0e31-4455-b2c9-0801be069f28.png">
+  <a href="https://github.com/ahooksjs/dumi-theme-antd">
+    <img  src="https://cdn.jsdelivr.net/gh/ahooksjs/dumi-theme-antd/assets/home-cover.png" alt="home cover picture">
   </a>
 </p>
 
@@ -19,12 +19,8 @@
 Install this theme into `devDependencies`:
 
 ```bash
-$ pnpm i dumi-theme-antd -D
+$ pnpm i @ahooksjs/dumi-theme-antd -D
 ```
-
-## F&Q
-
-<img width=300 src="https://github.com/KuangPF/dumi-theme-antd/assets/20694238/3aa88f29-0995-4452-8b07-5a46cc522b77">
 
 ## Contributing
 
@@ -35,11 +31,7 @@ pnpm install
 pnpm run docs
 ```
 
-Thank you to all the people who already contributed to `dumi-theme-antd` !
-
-<a href="https://github.com/KuangPF/dumi-theme-antd/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=KuangPF/dumi-theme-antd" />
-</a>
+Thank you to all the people who already contributed to `@ahooksjs/dumi-theme-antd` !
 
 ## LICENSE
 

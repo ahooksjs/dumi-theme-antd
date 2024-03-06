@@ -1,16 +1,17 @@
 {
-  "name": "@liuyib/dumi-theme-antd",
-  "version": "0.1.3",
+  "name": "@ahooksjs/dumi-theme-antd",
+  "version": "0.1.0",
   "description": "Ant Design 5.0 官网风格类似的 dumi2 主题插件",
   "keywords": [
     "dumi",
     "dumi-theme",
-    "antd"
+    "antd",
+    "ahooks"
   ],
-  "homepage": "https://kuangpf.com/dumi-theme-antd",
+  "homepage": "https://ahooks.js.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KuangPF/dumi-theme-antd"
+    "url": "https://github.com/ahooksjs/dumi-theme-antd"
   },
   "license": "MIT",
   "main": "dist/index.js",

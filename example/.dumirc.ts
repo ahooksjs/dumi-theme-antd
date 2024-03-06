@@ -22,18 +22,18 @@ export default defineConfig({
         { title: '指南', link: '/guide/introduce' },
         { title: '配置', link: '/config/base' },
         { title: '示例', link: '/demo/secondary-sidebar-colors' },
-        { title: '更新日志', link: 'https://github.com/liuyib/dumi-theme-antd/releases' }
+        { title: '更新日志', link: 'https://github.com/ahooksjs/dumi-theme-antd/releases' }
       ],
       'en-US': [
         { title: 'Guide', link: '/en-US/guide/introduce' },
         { title: 'Config', link: '/en-US/config/base' },
         { title: 'Demo', link: '/en-US/demo/secondary-sidebar-colors' },
-        { title: 'Releases', link: 'https://github.com/liuyib/dumi-theme-antd/releases' }
+        { title: 'Releases', link: 'https://github.com/ahooksjs/dumi-theme-antd/releases' }
       ]
     },
     footer:
       'Made with<span style="color: rgb(255, 255, 255);">❤</span>by <span>KuangPF | Copyright © 2022-present</span>',
-    github: 'https://github.com/KuangPF/dumi-theme-antd',
+    github: 'https://github.com/ahooksjs/dumi-theme-antd',
     localesEnhance: [
       { id: 'zh-CN', switchPrefix: '中' },
       { id: 'en-US', switchPrefix: 'En' }
@@ -173,7 +173,7 @@ export default defineConfig({
           {
             icon: 'https://github-production-user-asset-6210df.s3.amazonaws.com/20694238/256181695-b05fa72a-4ab5-479d-bb74-3d723755de47.png',
             title: 'GitHub',
-            url: 'https://github.com/KuangPF/dumi-theme-antd',
+            url: 'https://github.com/ahooksjs/dumi-theme-antd',
             openExternal: true
           },
           {
@@ -189,13 +189,13 @@ export default defineConfig({
           {
             icon: 'https://github-production-user-asset-6210df.s3.amazonaws.com/20694238/256181680-3b031d0f-1c51-48d2-a676-b2f82aa23e09.png',
             title: '报告 Bug',
-            url: 'https://github.com/KuangPF/dumi-theme-antd/issues/new',
+            url: 'https://github.com/ahooksjs/dumi-theme-antd/issues/new',
             openExternal: true
           },
           {
             icon: 'https://github-production-user-asset-6210df.s3.amazonaws.com/20694238/256181701-b51d6a6f-3190-4525-80d0-43ac194437c9.png',
             title: '议题',
-            url: 'https://github.com/KuangPF/dumi-theme-antd/issues',
+            url: 'https://github.com/ahooksjs/dumi-theme-antd/issues',
             openExternal: true
           }
         ]
@@ -249,6 +249,10 @@ export default defineConfig({
       {
         text: 'Ant Design',
         link: 'https://ant.design/'
+      },
+      {
+        text: 'ahooks',
+        link: 'https://ahooks.js.org/'
       }
     ]
   })
