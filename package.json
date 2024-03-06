@@ -11,7 +11,7 @@
   "homepage": "https://ahooks.js.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ahooksjs/dumi-theme-antd"
+    "url": "https://github.com/ahooksjs/dumi-theme-antd.git"
   },
   "license": "MIT",
   "main": "dist/index.js",
