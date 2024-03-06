@@ -19,9 +19,9 @@ export interface NavigationProps {
   responsive: IResponsive;
 }
 
-const getFirstPathAndIgnoreLocale = (pathname?: string, localeBase?: string) => {
+const getWithoutLocaleFirstPath = (pathname?: string, localeBase?: string) => {
   if (!pathname) return '';
-  if (!localeBase) return pathname;
+  if (!localeBase || isExternalLinks(pathname)) return pathname;
 
   const splitPaths = pathname.split('/').filter(Boolean);
   const pathLocalePrefix = localeBase === '/' ? '' : localeBase;
@@ -107,12 +107,12 @@ export default function Navigation({ isMobile, responsive }: NavigationProps) {
   const navList = useNavData();
   const locale = useLocale() as ReturnType<typeof useLocale> & { base: string };
   const moreLinks = useLocaleValue('moreLinks');
-  const activeKey = getFirstPathAndIgnoreLocale(pathname, locale.base);
+  const activeKey = getWithoutLocaleFirstPath(pathname, locale.base);
 
   const menuItems: MenuItemType[] = (navList ?? [])
     .map((navItem) => {
       const { title, link } = navItem || {};
-      const key = getFirstPathAndIgnoreLocale(link, locale.base);
+      const key = getWithoutLocaleFirstPath(link, locale.base);
       const path = `${link}${search}`;
 
       return {
