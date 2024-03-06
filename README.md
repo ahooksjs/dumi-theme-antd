@@ -4,7 +4,7 @@
 
 [dumi](https://d.umijs.org) theme similar to antd v5 website
 
-[![NPM Version](https://img.shields.io/npm/v/%40ahooksjs%2Fdumi-theme-antd)](https://npmjs.org/package/@ahooksjs/dumi-theme-antd) [![NPM Downloads](https://img.shields.io/npm/dm/%40ahooksjs%2Fdumi-theme-antd)](https://npmjs.org/package/@ahooksjs/dumi-theme-antd) [![Deploy](https://github.com/ahooksjs/dumi-theme-antd/actions/workflows/gh-pages.yml/badge.svg?branch=main)](https://github.com/ahooksjs/dumi-theme-antd/actions/workflows/gh-pages.yml)
+[![NPM Version](https://img.shields.io/npm/v/%40ahooksjs%2Fdumi-theme-antd)](https://npmjs.org/package/@ahooks.js/dumi-theme-antd) [![NPM Downloads](https://img.shields.io/npm/dm/%40ahooksjs%2Fdumi-theme-antd)](https://npmjs.org/package/@ahooks.js/dumi-theme-antd) [![Deploy](https://github.com/ahooksjs/dumi-theme-antd/actions/workflows/gh-pages.yml/badge.svg?branch=main)](https://github.com/ahooksjs/dumi-theme-antd/actions/workflows/gh-pages.yml)
 
 </div>
 
@@ -19,7 +19,7 @@
 Install this theme into `devDependencies`:
 
 ```bash
-$ pnpm i @ahooksjs/dumi-theme-antd -D
+$ pnpm i @ahooks.js/dumi-theme-antd -D
 ```
 
 ## Contributing
@@ -31,7 +31,7 @@ pnpm install
 pnpm run docs
 ```
 
-Thank you to all the people who already contributed to `@ahooksjs/dumi-theme-antd` !
+Thank you to all the people who already contributed to `@ahooks.js/dumi-theme-antd` !
 
 ## LICENSE
 
