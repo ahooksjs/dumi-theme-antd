@@ -59,8 +59,7 @@ const Logo = () => {
   const { themeConfig } = useSiteData();
   const { search } = useLocation();
   const locale = useLocale();
-  const logImgUrl =
-    themeConfig.logo || 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';
+  const logImgUrl = themeConfig.logo || 'https://ahooks.js.org/simple-logo.svg';
   const content = useMemo(
     () => (
       <Fragment>
@@ -71,8 +70,16 @@ const Logo = () => {
     [logImgUrl, themeConfig.name]
   );
 
+  const base = 'base' in locale ? locale.base : '';
   const suffix = 'suffix' in locale ? locale.suffix : '';
-  const homePath = `/${suffix ? `index${suffix}` : ''}`;
+
+  let homePath = '/';
+  if (base) {
+    homePath = base;
+  }
+  if (suffix) {
+    homePath = `/index${suffix}`;
+  }
 
   return (
     <h1>
