@@ -76,17 +76,11 @@ const DocLayout: FC = () => {
           className={classNames(['dumi-theme-antd-root', { rtl: direction === 'rtl' }])}
         />
         <title>{`${title || 'dumi-theme-antd'}${description ? `-${description}` : ''}`}</title>
-        <link
-          sizes="144x144"
-          href="https://gw.alipayobjects.com/zos/antfincdn/UmVnt3t4T0/antd.png"
-        />
+        <link href="https://ahooks.js.org/simple-logo.svg" />
         <meta name="description" content={description} />
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
-        <meta
-          property="og:image"
-          content="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png"
-        />
+        <meta property="og:image" content="https://ahooks.js.org/simple-logo.svg" />
       </Helmet>
       <GlobalStyles />
       <Header />
