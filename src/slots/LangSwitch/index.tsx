@@ -25,12 +25,7 @@ const LangSwitch: FC = () => {
         target: locales.find(({ id }) => id === lang)!
       });
 
-      // 多语言首页做特殊处理 eg. /index-en
-      if (path.startsWith('/-')) {
-        path = `/index${path.substring(1)}`;
-      } else if (path.endsWith('/index')) {
-        path = path.replace('/index', '/');
-      }
+      // remove trailing slash if path is not root
       if (path.endsWith('/') && path !== '/') {
         path = path.slice(0, -1);
       }
