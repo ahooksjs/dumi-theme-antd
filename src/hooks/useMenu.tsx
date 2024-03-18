@@ -22,8 +22,9 @@ export type UseMenuOptions = {
 };
 
 const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => {
-  const locale = useLocale() as ReturnType<typeof useLocale> & { base: string };
-  const pathLocalePrefix = locale.base === '/' ? '' : locale.base;
+  const locale = useLocale();
+  const pathPrefix = 'base' in locale ? (locale.base === '/' ? '' : locale.base) : '';
+  const localeSuffix = 'suffix' in locale ? locale.suffix : '';
 
   const { pathname, search } = useLocation();
   const { sidebarGroupModePath, sidebarEnhance = {} } = useAdditionalThemeConfig();
@@ -45,7 +46,7 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
 
   const currentSidebarEnhanceData = useMemo<SidebarEnhanceItems | undefined>(() => {
     const currentLink = Object.keys(sidebarEnhance).find((link) => {
-      return pathname.startsWith(`${pathLocalePrefix}${link}`);
+      return pathname.startsWith(`${pathPrefix}${link}`);
     });
     if (!currentLink) return undefined;
     return sidebarEnhance[currentLink];
@@ -109,6 +110,7 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
   }, [after, before, currentSidebarEnhanceData, linkTitleMap, search]);
 
   const menuItems = useMemo<MenuProps['items']>(() => {
+    const suffixRegExp = new RegExp(`${localeSuffix}$`, 'g');
     const sidebarItems = [...(sidebarData ?? [])];
 
     const getItemTag = (tag: string | { color: string; title: string }, show = true) =>
@@ -132,7 +134,7 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
               sidebarGroupModePath === true
                 ? true
                 : (sidebarGroupModePath ?? []).filter((rule: ISidebarGroupModePathItem) => {
-                    return pathname.startsWith(`${pathLocalePrefix}${rule}`);
+                    return pathname.startsWith(`${pathPrefix}${rule}`);
                   }).length > 0;
 
             if (isSideBarGroupMode) {
@@ -156,7 +158,7 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
                       {after}
                     </Link>
                   ),
-                  key: item.link.replace(/(-cn$)/g, '')
+                  key: item.link.replace(suffixRegExp, '')
                 }))
               });
             } else {
@@ -208,7 +210,7 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
                       {after}
                     </Link>
                   ),
-                  key: item.link.replace(/(-cn$)/g, '')
+                  key: item.link.replace(suffixRegExp, '')
                 })) ?? [])
               );
               Object.entries(childrenGroupOrdered).forEach(([type, children]) => {
@@ -229,7 +231,7 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
                           {after}
                         </Link>
                       ),
-                      key: item.link.replace(/(-cn$)/g, '')
+                      key: item.link.replace(suffixRegExp, '')
                     }))
                   });
                 }
@@ -262,7 +264,7 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
                     {after}
                   </Link>
                 ),
-                key: item.link.replace(/(-c n$)/g, '')
+                key: item.link.replace(suffixRegExp, '')
               }))
             );
           }
@@ -274,9 +276,10 @@ const useMenu = (options: UseMenuOptions = {}): [MenuProps['items'], string] => 
         []
       ) ?? []
     );
-  }, [sidebarData, sidebarGroupModePath, pathname, search, before, after]);
+  }, [sidebarData, sidebarGroupModePath, pathname, search, before, after, locale]);
 
-  return [sidebarEnhanceMenuItems || menuItems, pathname];
+  const selectedKey = pathname.replace(new RegExp(`${localeSuffix}$`, 'g'), '');
+  return [sidebarEnhanceMenuItems || menuItems, selectedKey];
 };
 
 export default useMenu;
