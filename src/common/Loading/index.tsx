@@ -28,7 +28,7 @@ const Loading: React.FC = () => {
     return (
       <div style={{ maxWidth: '70vw', width: '100%', margin: '80px auto 0', textAlign: 'center' }}>
         <img
-          src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+          src="https://ahooks.js.org/simple-logo.svg"
           width={40}
           alt="loading"
           style={{ marginBottom: 24, filter: 'grayscale(1)', opacity: 0.33 }}
