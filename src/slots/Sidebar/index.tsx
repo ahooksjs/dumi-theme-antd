@@ -5,6 +5,7 @@ import { useSidebarData } from 'dumi';
 import MobileMenu from 'rc-drawer';
 import 'rc-drawer/assets/index.css';
 import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
+import useAffixTop from '../../hooks/useAffixTop';
 import useMenu from '../../hooks/useMenu';
 import useSiteToken from '../../hooks/useSiteToken';
 import SiteContext from '../SiteContext';
@@ -168,6 +169,7 @@ const Sidebar: FC = () => {
   }, [isMobile, handleCloseMobileMenu]);
 
   const { mobileMenuVisible } = sidebarState;
+  const affixTop = useAffixTop();
 
   const menuChild = (
     <ConfigProvider
@@ -211,7 +213,7 @@ const Sidebar: FC = () => {
     </React.Fragment>
   ) : (
     <Col xxl={4} xl={5} lg={6} md={6} sm={24} xs={24} css={styles.mainMenu}>
-      <Affix>
+      <Affix offsetTop={affixTop}>
         <section className="main-menu-inner">{menuChild}</section>
       </Affix>
     </Col>

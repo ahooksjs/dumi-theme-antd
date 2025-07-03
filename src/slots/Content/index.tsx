@@ -9,6 +9,7 @@ import { useMemo, useContext } from 'react';
 import PrevAndNext from '../../common/PrevAndNext';
 import LastUpdated from '../../common/LastUpdated';
 import EditLink from '../../common/EditLink';
+import useAffixTop from '../../hooks/useAffixTop';
 import useSiteToken from '../../hooks/useSiteToken';
 import Footer from '../Footer';
 import SiteContext from '../SiteContext';
@@ -154,11 +155,12 @@ const Content: FC<{ children: ReactNode }> = ({ children }) => {
   );
 
   const isRTL = direction === 'rtl';
+  const affixTop = useAffixTop();
 
   return (
     <Col xxl={20} xl={19} lg={18} md={18} sm={24} xs={24} css={styles.colContent}>
       {!!meta.frontmatter.toc && (
-        <Affix>
+        <Affix offsetTop={affixTop}>
           <section css={styles.tocWrapper} className={classNames({ rtl: isRTL })}>
             <Anchor
               css={styles.toc}

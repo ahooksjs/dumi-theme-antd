@@ -90,6 +90,7 @@ const Footer: FC = () => {
   }, []);
 
   if (!footer) return null;
+
   return (
     <RcFooter
       columns={getFooterLinks(cloneDeep(footerLinks))}
