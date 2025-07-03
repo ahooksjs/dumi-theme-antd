@@ -33,6 +33,13 @@ pnpm run docs
 
 Thank you to all the people who already contributed to `@ahooks.js/dumi-theme-antd` !
 
+## Publish
+
+```bash
+npm login --registry=https://registry.npmjs.org/
+npm publish
+```
+
 ## LICENSE
 
 MIT
