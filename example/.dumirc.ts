@@ -2,21 +2,27 @@ import { defineConfig } from 'dumi';
 import pkgJSON from '../package.json';
 import { defineThemeConfig } from './.dumi/theme';
 
+const basePath = '';
+
 export default defineConfig({
   mfsu: false,
   ssr: process.env.NODE_ENV === 'development' ? false : {},
-  publicPath: process.env.DEPLOY_SITE === 'local' ? '/' : '/dumi-theme-antd/',
-  base: process.env.DEPLOY_SITE === 'local' ? '/' : '/dumi-theme-antd',
+  publicPath: `${basePath}/`,
+  base: `${basePath}/`,
   favicons: ['https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png'],
   extraBabelPresets: ['@emotion/babel-preset-css-prop'],
   locales: [
     { id: 'zh-CN', name: '中文' },
     { id: 'en-US', name: 'English' }
   ],
-  // pass theme config
   themeConfig: defineThemeConfig({
     name: 'dumi-theme-antd',
+    title: 'Dumi Theme Ant Design',
     lastUpdated: true,
+    description: {
+      'zh-CN': 'Ant Design 5.0 官网风格类似的 dumi2 主题插件',
+      'en-US': 'dumi2 theme similar to antd v5 website'
+    },
     nav: {
       'zh-CN': [
         { title: '指南', link: '/guide/introduce' },
@@ -33,18 +39,33 @@ export default defineConfig({
         { title: 'GitHub', link: 'https://github.com/ahooksjs/dumi-theme-antd' }
       ]
     },
-    footer:
-      'Made with<span style="color: rgb(255, 255, 255);">❤</span>by <span>ahooks | Copyright © 2024-present</span>',
-    github: 'https://github.com/ahooksjs/dumi-theme-antd',
-    localesEnhance: [
-      { id: 'zh-CN', switchPrefix: '中' },
-      { id: 'en-US', switchPrefix: 'En' }
-    ],
     sidebarGroupModePath: ['/config', '/guide'],
-    title: 'Dumi Theme Ant Design',
-    description: {
-      'zh-CN': 'Ant Design 5.0 官网风格类似的 dumi2 主题插件',
-      'en-US': 'dumi2 theme similar to antd v5 website'
+    docVersions: {
+      [pkgJSON.version]: ''
+    },
+    moreLinks: [
+      {
+        text: 'Dumi',
+        link: 'https://d.umijs.org/'
+      },
+      {
+        text: 'Ant Design',
+        link: 'https://ant.design/'
+      },
+      {
+        text: 'ahooks',
+        link: 'https://ahooks.js.org/'
+      }
+    ],
+    localesEnhance: [
+      { id: 'zh-CN', switchPrefix: 'En' },
+      { id: 'en-US', switchPrefix: '中' }
+    ],
+    socialLinks: {
+      github: 'https://github.com/ahooksjs/dumi-theme-antd'
+    },
+    loading: {
+      skeleton: ['/guide', '/config', '/demo']
     },
     actions: {
       'zh-CN': [
@@ -133,12 +154,6 @@ export default defineConfig({
             'Easy access, installation and use, fully integrated into Ant Design style, built-in theme switching, compact mode and other functions.'
         }
       ]
-    },
-    loading: {
-      skeleton: ['/guide', '/config', '/demo']
-    },
-    docVersions: {
-      [pkgJSON.version]: ''
     },
     footerLinks: [
       {
@@ -243,19 +258,7 @@ export default defineConfig({
         ]
       }
     ],
-    moreLinks: [
-      {
-        text: 'Dumi',
-        link: 'https://d.umijs.org/'
-      },
-      {
-        text: 'Ant Design',
-        link: 'https://ant.design/'
-      },
-      {
-        text: 'ahooks',
-        link: 'https://ahooks.js.org/'
-      }
-    ]
+    footer:
+      'Made with<span style="color: rgb(255, 255, 255);">❤</span>by <span>ahooks | Copyright © 2024-present</span>'
   })
 });

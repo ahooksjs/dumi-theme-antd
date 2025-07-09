@@ -20,12 +20,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "father build",
-    "build:docs": "cross-env APP_ROOT=example dumi build",
-    "build:site": "cross-env APP_ROOT=example DEPLOY_SITE=local dumi build",
-    "site": "node app.js",
-    "dev": "father dev",
-    "docs": "cross-env APP_ROOT=example dumi dev",
+    "dev": "cross-env APP_ROOT=example dumi dev",
+    "build": "cross-env APP_ROOT=example dumi build",
+    "preview": "cross-env APP_ROOT=example dumi preview",
     "lint": "pnpm run lint:es && pnpm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\" --fix",
