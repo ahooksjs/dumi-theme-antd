@@ -114,6 +114,10 @@ const useStyle = () => {
     mainMenu: css`
       z-index: 1;
 
+      .main-menu-affix {
+        height: 100%;
+      }
+
       .main-menu-inner {
         position: sticky;
         top: 0;
@@ -213,7 +217,7 @@ const Sidebar: FC = () => {
     </React.Fragment>
   ) : (
     <Col xxl={4} xl={5} lg={6} md={6} sm={24} xs={24} css={styles.mainMenu}>
-      <Affix offsetTop={affixTop}>
+      <Affix offsetTop={affixTop} className="main-menu-affix">
         <section className="main-menu-inner">{menuChild}</section>
       </Affix>
     </Col>
