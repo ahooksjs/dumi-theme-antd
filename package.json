@@ -27,7 +27,7 @@
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\" --fix",
     "prepare": "husky install && father link-dev-theme",
-    "prepublishOnly": "father doctor && pnpm run build"
+    "prepublishOnly": "father doctor && father build"
   },
   "commitlint": {
     "extends": [
