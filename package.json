@@ -21,6 +21,7 @@
   ],
   "scripts": {
     "dev": "cross-env APP_ROOT=example dumi dev",
+    "start": "pnpm run dev",
     "build": "cross-env APP_ROOT=example dumi build",
     "preview": "cross-env APP_ROOT=example dumi preview",
     "lint": "pnpm run lint:es && pnpm run lint:css",
@@ -72,6 +73,8 @@
     "@commitlint/config-conventional": "^17.6.5",
     "@emotion/babel-preset-css-prop": "11.10.0",
     "@types/lodash": "^4.14.195",
+    "@types/react": "^19.2.4",
+    "@types/react-dom": "^19.2.3",
     "@utopia/eslint-config-react": "^0.0.13",
     "@utopia/prettier-config-base": "^0.0.13",
     "antd": "^5.7.0",
@@ -86,7 +89,8 @@
     "lint-staged": "^13.2.2",
     "prettier": "^3.2.5",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "antd": "^5.7.0",

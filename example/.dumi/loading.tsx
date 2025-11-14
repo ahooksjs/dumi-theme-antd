@@ -1,1 +1,1 @@
-export { default } from './theme/common/Loading';
+export { default } from '../../src/common/Loading';
