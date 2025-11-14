@@ -18,8 +18,7 @@
     "stripInternal": true,
     "baseUrl": "./",
     "paths": {
-      "@@/*": ["example/.dumi/tmp/*"],
-      "dumi/theme/*": ["src/*"]
+      "@@/*": ["example/.dumi/tmp/*"]
     }
   },
   "exclude": ["node_modules"]
