@@ -28,7 +28,7 @@ $ pnpm i @ahooks.js/dumi-theme-antd -D
 # install deps
 pnpm install
 # start dumi server
-pnpm run docs
+pnpm run dev
 ```
 
 Thank you to all the people who already contributed to `@ahooks.js/dumi-theme-antd` !
@@ -36,7 +36,13 @@ Thank you to all the people who already contributed to `@ahooks.js/dumi-theme-an
 ## Publish
 
 ```bash
+# step 1
 npm login --registry=https://registry.npmjs.org/
+
+# step 2
+# update version in package.json and commit
+
+# step 3 (will build before publish)
 npm publish
 ```
 

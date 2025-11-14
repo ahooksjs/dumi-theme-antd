@@ -22,13 +22,15 @@
   "scripts": {
     "dev": "cross-env APP_ROOT=example dumi dev",
     "start": "pnpm run dev",
-    "build": "cross-env APP_ROOT=example dumi build",
+    "build": "father build",
+    "build:docs": "cross-env APP_ROOT=example dumi build",
+    "doctor": "father doctor",
     "preview": "cross-env APP_ROOT=example dumi preview",
     "lint": "pnpm run lint:es && pnpm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\" --fix",
     "prepare": "husky install && father link-dev-theme",
-    "prepublishOnly": "father doctor && father build"
+    "prepublishOnly": "pnpm run doctor && pnpm run build"
   },
   "commitlint": {
     "extends": [
