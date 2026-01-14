@@ -1,11 +1,10 @@
 import { UnorderedListOutlined } from '@ant-design/icons';
 import { css } from '@emotion/react';
-import { Affix, Col, ConfigProvider, Menu } from 'antd';
+import { Col, ConfigProvider, Menu } from 'antd';
 import { useSidebarData } from 'dumi';
 import MobileMenu from 'rc-drawer';
 import 'rc-drawer/assets/index.css';
 import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
-import useAffixTop from '../../hooks/useAffixTop';
 import useMenu from '../../hooks/useMenu';
 import useSiteToken from '../../hooks/useSiteToken';
 import SiteContext from '../SiteContext';
@@ -114,14 +113,10 @@ const useStyle = () => {
     mainMenu: css`
       z-index: 1;
 
-      .main-menu-affix {
-        height: 100%;
-      }
-
       .main-menu-inner {
         position: sticky;
-        top: 0;
-        height: 100%;
+        top: 64px;
+        height: calc(100vh - 64px);
         max-height: 100vh;
         overflow: hidden;
       }
@@ -173,7 +168,6 @@ const Sidebar: FC = () => {
   }, [isMobile, handleCloseMobileMenu]);
 
   const { mobileMenuVisible } = sidebarState;
-  const affixTop = useAffixTop();
 
   const menuChild = (
     <ConfigProvider
@@ -217,9 +211,7 @@ const Sidebar: FC = () => {
     </React.Fragment>
   ) : (
     <Col xxl={4} xl={5} lg={6} md={6} sm={24} xs={24} css={styles.mainMenu}>
-      <Affix offsetTop={affixTop} className="main-menu-affix">
-        <section className="main-menu-inner">{menuChild}</section>
-      </Affix>
+      <section className="main-menu-inner">{menuChild}</section>
     </Col>
   );
 };
