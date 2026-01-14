@@ -29,6 +29,7 @@
     "lint": "pnpm run lint:es && pnpm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\" --fix",
+    "clean": "pnpx rimraf --glob node_modules",
     "prepare": "husky install && father link-dev-theme",
     "prepublishOnly": "pnpm run doctor && pnpm run build"
   },
@@ -55,13 +56,13 @@
   },
   "dependencies": {
     "@ant-design/cssinjs": "1.16.2",
-    "@ant-design/icons": "5.1.4",
+    "@ant-design/icons": "^6.1.0",
     "@babel/runtime": "7.22.3",
     "@ctrl/tinycolor": "3.6.0",
     "@emotion/css": "11.11.2",
     "@emotion/react": "11.14.0",
     "@emotion/server": "11.11.0",
-    "antd-token-previewer": "2.0.0-alpha.6",
+    "antd-token-previewer": "^3.0.0",
     "classnames": "2.3.2",
     "crypto": "1.0.1",
     "dayjs": "1.11.7",
